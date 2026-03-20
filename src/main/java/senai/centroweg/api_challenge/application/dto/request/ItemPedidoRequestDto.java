@@ -14,7 +14,7 @@ public record ItemPedidoRequestDto(
         String nomeProduto,
 
         @JsonProperty("quantidade")
-        @NotBlank
+        @NotNull
         Integer quantidade,
 
         @JsonProperty("preco_unitario")
@@ -22,6 +22,6 @@ public record ItemPedidoRequestDto(
         BigDecimal precoUnitario,
 
         @JsonProperty("id_pedido")
-        @NotBlank
+        @NotNull
         UUID idPedido
 ) { }
