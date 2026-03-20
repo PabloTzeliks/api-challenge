@@ -1,6 +1,7 @@
 package senai.centroweg.api_challenge.application.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import senai.centroweg.api_challenge.application.dto.PedidoRequest;
 import senai.centroweg.api_challenge.application.dto.PedidoResponse;
 import senai.centroweg.api_challenge.application.mapper.PedidoMapper;
@@ -23,6 +24,7 @@ public class PedidoService {
         this.pedidoMapper = pedidoMapper;
     }
 
+    @Transactional
     public PedidoResponse cadastrar(PedidoRequest request) {
 
         Pedido pedido = pedidoMapper.toDomain(request);
@@ -32,6 +34,7 @@ public class PedidoService {
         return pedidoMapper.toDto(pedidoSalvo);
     }
 
+    @Transactional
     public PedidoResponse atualizar(PedidoRequest request, UUID idPedido) {
 
         Pedido pedido = pedidoMapper.toDomain(request);
@@ -41,20 +44,21 @@ public class PedidoService {
         return pedidoMapper.toDto(pedidoAtualizado);
     }
 
-    public PedidoResponse acharPorId(UUID idPedido) {
-
-        Pedido pedidoSalvo = pedidoRepository.findById(idPedido)
-                .orElseThrow(() -> new IllegalArgumentException("Pedido não existente."));
-
-        return pedidoMapper.toDto(pedidoSalvo);
-    }
-
+    @Transactional
     public void remover(UUID idPedido) {
 
         Pedido pedidoSalvo = pedidoRepository.findById(idPedido)
                 .orElseThrow(() -> new IllegalArgumentException("Pedido não existente."));
 
         pedidoRepository.deleteById(idPedido);
+    }
+
+    public PedidoResponse acharPorId(UUID idPedido) {
+
+        Pedido pedidoSalvo = pedidoRepository.findById(idPedido)
+                .orElseThrow(() -> new IllegalArgumentException("Pedido não existente."));
+
+        return pedidoMapper.toDto(pedidoSalvo);
     }
 
     public List<PedidoResponse> listarTodos() {
