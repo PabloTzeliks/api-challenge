@@ -1,11 +1,11 @@
-package senai.centroweg.api_challenge.application.dto;
+package senai.centroweg.api_challenge.application.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.Instant;
 import java.util.UUID;
 
-public record PedidoResponse(
+public record PedidoResponseDto(
 
         @JsonProperty("id")
         UUID id,

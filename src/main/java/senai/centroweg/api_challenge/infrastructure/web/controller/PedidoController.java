@@ -4,8 +4,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import senai.centroweg.api_challenge.application.dto.PedidoRequest;
-import senai.centroweg.api_challenge.application.dto.PedidoResponse;
+import senai.centroweg.api_challenge.application.dto.request.PedidoRequestDto;
+import senai.centroweg.api_challenge.application.dto.response.PedidoResponseDto;
 import senai.centroweg.api_challenge.application.service.PedidoService;
 
 import java.util.List;
@@ -22,14 +22,14 @@ public class PedidoController {
     }
 
     @PostMapping
-    public ResponseEntity<PedidoResponse> cadastrarPedido(@RequestBody @Valid PedidoRequest request) {
+    public ResponseEntity<PedidoResponseDto> cadastrarPedido(@RequestBody @Valid PedidoRequestDto request) {
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(pedidoService.cadastrar(request));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PedidoResponse> atualizarPedido(@RequestBody @Valid PedidoRequest request, @PathVariable UUID id) {
+    public ResponseEntity<PedidoResponseDto> atualizarPedido(@RequestBody @Valid PedidoRequestDto request, @PathVariable UUID id) {
 
         return ResponseEntity.ok(pedidoService.atualizar(request, id));
     }
@@ -43,13 +43,13 @@ public class PedidoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PedidoResponse> buscarPedido(@PathVariable UUID id) {
+    public ResponseEntity<PedidoResponseDto> buscarPedido(@PathVariable UUID id) {
 
         return ResponseEntity.ok(pedidoService.acharPorId(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<PedidoResponse>> buscarPedidos() {
+    public ResponseEntity<List<PedidoResponseDto>> buscarPedidos() {
 
         return ResponseEntity.ok(pedidoService.listarTodos());
     }

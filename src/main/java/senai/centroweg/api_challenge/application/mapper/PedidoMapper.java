@@ -1,23 +1,23 @@
 package senai.centroweg.api_challenge.application.mapper;
 
 import org.springframework.stereotype.Component;
-import senai.centroweg.api_challenge.application.dto.PedidoRequest;
-import senai.centroweg.api_challenge.application.dto.PedidoResponse;
+import senai.centroweg.api_challenge.application.dto.request.PedidoRequestDto;
+import senai.centroweg.api_challenge.application.dto.response.PedidoResponseDto;
 import senai.centroweg.api_challenge.domain.model.Pedido;
 
 @Component
 public class PedidoMapper {
 
-    public Pedido toDomain(PedidoRequest request) {
+    public Pedido toDomain(PedidoRequestDto request) {
 
         return new Pedido(
                 request.dataPedido()
         );
     }
 
-    public PedidoResponse toDto(Pedido domain) {
+    public PedidoResponseDto toDto(Pedido domain) {
 
-        return new PedidoResponse(
+        return new PedidoResponseDto(
                 domain.getId(),
                 domain.getDataPedido()
         );
