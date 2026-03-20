@@ -29,13 +29,13 @@ public class PedidoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PedidoResponse> atualizarPedido(@RequestBody @Valid PedidoRequest request, @RequestParam UUID id) {
+    public ResponseEntity<PedidoResponse> atualizarPedido(@RequestBody @Valid PedidoRequest request, @PathVariable UUID id) {
 
         return ResponseEntity.ok(pedidoService.atualizar(request, id));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarPedido(@RequestParam UUID id) {
+    public ResponseEntity<Void> deletarPedido(@PathVariable UUID id) {
 
         pedidoService.remover(id);
 

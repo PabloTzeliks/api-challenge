@@ -10,19 +10,13 @@ import java.util.UUID;
 public class Pedido {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "data_pedido", nullable = false, unique = false)
     private Instant dataPedido;
 
     public Pedido(Instant dataPedido) {
-        this.id = UUID.randomUUID();
-        this.dataPedido = dataPedido;
-    }
-
-    public Pedido(UUID id, Instant dataPedido) {
-        this.id = id;
         this.dataPedido = dataPedido;
     }
 
