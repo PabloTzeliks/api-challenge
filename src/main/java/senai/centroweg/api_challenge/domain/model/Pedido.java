@@ -3,6 +3,7 @@ package senai.centroweg.api_challenge.domain.model;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -13,8 +14,12 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "data_pedido", nullable = false, unique = false)
+    @Column(name = "data_pedido", nullable = false)
     private Instant dataPedido;
+
+    @Column(name = "itens", nullable = false)
+    @OneToMany(mappedBy = "pedido")
+    private List<ItemPedido> itens;
 
     public Pedido(Instant dataPedido) {
         this.dataPedido = dataPedido;
